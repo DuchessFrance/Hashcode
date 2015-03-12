@@ -16,4 +16,12 @@ public class DataCenterRow {
     public void setSlots(List<Slot> slots) {
         this.slots = slots;
     }
+
+    public int getRowIndex() {
+        return rowIndex;
+    }
+
+    public void setRowIndex(int rowIndex) {
+        this.rowIndex = rowIndex;
+    }
 }

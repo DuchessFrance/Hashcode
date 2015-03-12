@@ -1,8 +1,56 @@
 package fr.duchess.hashcode;
 
+import fr.duchess.hashcode.algo.Room;
+import fr.duchess.hashcode.algo.ServorPicker;
+import fr.duchess.hashcode.bean.DataCenter;
+import fr.duchess.hashcode.bean.DataCenterRow;
+import fr.duchess.hashcode.bean.Servor;
+import fr.duchess.hashcode.bean.Slot;
+
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
+        DataCenter dataCenter = fakeDataCenter();
+        Room room = new Room(2, dataCenter);
+        ArrayList servors = new ArrayList<Servor>();
+        servors.add(fakeServor(0));
+        servors.add(fakeServor(1));
+        ServorPicker servorPicker = new ServorPicker(room, servors);
+        servorPicker.placeNextServor();
+        servorPicker.placeNextServor();
+    }
+
+    public static Servor fakeServor(int i){
+        Servor servor = new Servor(i);
+        servor.setSize(2);
+        servor.setCapacity(2);
+        return servor;
+    }
+
+    public static DataCenter fakeDataCenter(){
+        DataCenter dataCenter = new DataCenter();
+        dataCenter.setRows(new ArrayList<>());
+        dataCenter.getRows().add(fakeRow(0));
+        dataCenter.getRows().add(fakeRow(1));
+        return dataCenter;
+    }
+
+    public static DataCenterRow fakeRow(int rowNumber){
+        DataCenterRow dataCenterRow = new DataCenterRow();
+        dataCenterRow.setRowIndex(rowNumber);
+        dataCenterRow.setSlots(new ArrayList<>());
+        for (int i = 1; i < 6; i++) {
+            dataCenterRow.getSlots().add(fakeSlot(i));
+        }
+        return dataCenterRow;
+    }
+
+    public static Slot fakeSlot(int count){
+        Slot slot = new Slot();
+        slot.setAvailable(true);
+        slot.setSlotNumber(count);
+        return slot;
     }
 }

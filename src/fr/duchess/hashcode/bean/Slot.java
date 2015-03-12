@@ -11,4 +11,8 @@ public class Slot {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+
+    public void setSlotNumber(int slotNumber) {
+        this.slotNumber = slotNumber;
+    }
 }
