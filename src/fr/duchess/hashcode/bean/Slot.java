@@ -12,7 +12,7 @@ public class Slot {
         this.available = available;
     }
 
-    public void setSlotNumber(int slotNumber) {
-        this.slotNumber = slotNumber;
+    public void setSlotNumber(int number) {
+        this.slotNumber = number;
     }
 }

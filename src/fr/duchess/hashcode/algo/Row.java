@@ -1,10 +1,7 @@
 package fr.duchess.hashcode.algo;
 
-import fr.duchess.hashcode.bean.Slot;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 

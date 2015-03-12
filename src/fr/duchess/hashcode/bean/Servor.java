@@ -4,8 +4,9 @@ public class Servor {
     int servorId;
     int size;
     int capacity;
-    private int group;
     int row;
+    int servorId;
+    private int group;
 
     public Servor(int i) {
         servorId = i;
@@ -23,8 +24,16 @@ public class Servor {
         return capacity;
     }
 
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
     public int getSize() {
         return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public void setRow(int row) {
@@ -42,4 +51,13 @@ public class Servor {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    public int getServorId() {
+        return servorId;
+    }
+
+    public void setServorId(int servorId) {
+        this.servorId = servorId;
+    }
+
 }

@@ -9,9 +9,34 @@ import fr.duchess.hashcode.bean.Slot;
 
 import java.util.ArrayList;
 
+import fr.duchess.hashcode.bean.DataCenter;
+import fr.duchess.hashcode.bean.Servor;
+
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
+
+        DataCenter dataCenter = new DataCenter();
+        
+        Parser parser = Parser.getInstance();
+
+        List<Servor> servers = parser.parse(dataCenter, "src/fr/duchess/hashcode/resources/dc.in");
+
+
+
+    }
+
+ public static void testAlgo(String[] args) {
+        // write your code here
+
+
+
+
+
+
+
         DataCenter dataCenter = fakeDataCenter();
         Room room = new Room(2, dataCenter);
         ArrayList servors = new ArrayList<Servor>();
@@ -20,6 +45,7 @@ public class Main {
         ServorPicker servorPicker = new ServorPicker(room, servors);
         servorPicker.placeNextServor();
         servorPicker.placeNextServor();
+
     }
 
     public static Servor fakeServor(int i){

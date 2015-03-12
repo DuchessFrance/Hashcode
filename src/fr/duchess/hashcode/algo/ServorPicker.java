@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.PriorityQueue;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,6 +13,9 @@ import java.util.stream.Stream;
  * Created by Axelle on 12-03-15.
  */
 public class ServorPicker {
+
+    private Room room;
+    private PriorityQueue<Servor> remainingServors;
 
     public ServorPicker(Room room, List<Servor> servors) {
         this.room = room;
@@ -27,7 +29,7 @@ public class ServorPicker {
         remainingServors.addAll(servors);
     }
 
-    public void placeNextServor(){
+    public void placeNextServor() {
         attemptPlacingServor(remainingServors.peek());
     }
 

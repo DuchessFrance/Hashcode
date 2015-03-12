@@ -8,10 +8,10 @@ import java.util.Optional;
  * Created by Axelle on 12-03-15.
  */
 public class Segment {
-    int size;
-    Status status;
     public Optional<Servor> servor;
     public Optional<Group> group;
+    int size;
+    Status status;
 
     public Segment() {
         this.size = 1;

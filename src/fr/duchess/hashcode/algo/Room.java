@@ -36,7 +36,7 @@ public class Room {
         return groups;
     }
 
-    public Room (int groupCount, DataCenter datacenter){
+    public Room(int groupCount, DataCenter datacenter) {
         groups = new ArrayList<>();
         rows = new ArrayList<>();
         for (int i = 1; i <= groupCount; i++) {
@@ -47,27 +47,40 @@ public class Room {
             Row newRow = new Row(row.getRowIndex());
 
             rows.add(newRow);
-            Optional<Segment> currentSegment = Optional.empty() ;
+            Optional<Segment> currentSegment = Optional.empty();
             for (Slot slot : row.getSlots()) {
-                if(currentSegment.isPresent()){
-                    if(currentSegment.get().status == Status.FREE && slot.isAvailable()){
-                        currentSegment.get().size ++;
+                if (currentSegment.isPresent()) {
+                    if (currentSegment.get().status == Status.FREE && slot.isAvailable()) {
+                        currentSegment.get().size++;
                         continue;
                     }
-                    if(currentSegment.get().status == Status.UNAV && !slot.isAvailable()){
-                        currentSegment.get().size ++;
+                    if (currentSegment.get().status == Status.UNAV && !slot.isAvailable()) {
+                        currentSegment.get().size++;
                         continue;
                     }
 
                 }
                 Segment segment = new Segment();
                 currentSegment = Optional.of(segment);
-                if(slot.isAvailable())
+                if (slot.isAvailable())
                     segment.status = Status.FREE;
                 else
                     segment.status = Status.UNAV;
             }
         }
+    }
+
+    public Stream<Row> orderRowforGroup(final int group) {
+        return rows.stream().sorted(new Comparator<Row>() {
+            @Override
+            public int compare(Row o1, Row o2) {
+                return Integer.compare(o1.getValueByGroup(group), o2.getValueByGroup(group));
+            }
+        });
+    }
+
+    public PriorityQueue<Group> getGroups() {
+        return groups;
     }
 
 }

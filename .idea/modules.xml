@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/hashcode.iml" filepath="$PROJECT_DIR$/.idea/hashcode.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hashcode.iml" filepath="$PROJECT_DIR$/hashcode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hashcode.iml" filepath="$PROJECT_DIR$/Hashcode.iml" />
     </modules>
   </component>
 </project>
