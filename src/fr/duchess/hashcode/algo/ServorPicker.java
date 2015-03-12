@@ -75,7 +75,7 @@ public class ServorPicker {
     public String serialize(){
         StringBuilder string = new StringBuilder();
         for (Servor servor : servors) {
-            string.append(servor.getRow()).append(" ").append("/").append(" ").append(servor.getGroup()).append("\n");
+            string.append(servor.getServorId()).append(" ").append(servor.getRow()).append(" ").append("/").append(" ").append(servor.getGroup()).append("\n");
         }
         return string.toString();
     }

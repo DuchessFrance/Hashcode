@@ -62,6 +62,7 @@ public class Room {
                 }
                 Segment segment = new Segment();
                 currentSegment = Optional.of(segment);
+                newRow.getSlots().add(segment);
                 if (slot.isAvailable())
                     segment.status = Status.FREE;
                 else
