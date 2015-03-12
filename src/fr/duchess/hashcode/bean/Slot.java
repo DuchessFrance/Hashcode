@@ -1,8 +1,14 @@
 package fr.duchess.hashcode.bean;
 
 public class Slot {
-    int rowNumber;
     int slotNumber;
-    boolean available;
+    private boolean available;
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 }
