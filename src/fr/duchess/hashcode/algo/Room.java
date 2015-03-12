@@ -76,5 +76,7 @@ public class Room {
     }
 
 
-
+    public List<Row> getRows() {
+        return rows;
+    }
 }

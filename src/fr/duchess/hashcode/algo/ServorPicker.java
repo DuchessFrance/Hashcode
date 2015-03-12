@@ -87,7 +87,7 @@ public class ServorPicker {
                 new ToIntFunction<Group>() {
                     @Override
                     public int applyAsInt(Group value) {
-                        return 0;
+                        return value.getGaranteedCapacity(room.getRows().size());
                     }
                 }
         ).min().getAsInt();

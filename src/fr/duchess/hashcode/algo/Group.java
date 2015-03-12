@@ -28,5 +28,23 @@ public class Group {
         }).sum();
     }
 
-   
+
+    public int getGaranteedCapacity(int rowCount) {
+        return getCapacity() - maxRowCapacity(rowCount);
+    }
+
+    private int maxRowCapacity(int rowCount) {
+        int maxCapa = 0;
+        for (int i = 0; i < rowCount; i++) {
+            int currentCapa = 0;
+            for (Servor servor : servors) {
+                if(servor.getRow() == i){
+                    currentCapa += servor.getCapacity();
+                }
+            }
+            if(currentCapa > maxCapa)
+                maxCapa = currentCapa;
+        }
+        return maxCapa;
+    }
 }

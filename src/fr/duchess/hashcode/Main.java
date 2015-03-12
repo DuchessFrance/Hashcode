@@ -31,6 +31,9 @@ public class Main {
         }
 
         System.out.print(servorPicker.serialize());
+
+        System.out.println("**********************");
+        System.out.println(servorPicker.evaluate());
     }
 
  public static void testAlgo(String[] args) {
