@@ -49,7 +49,8 @@ public class Main {
     }
 
     public static Servor fakeServor(int i){
-        Servor servor = new Servor(i);
+        Servor servor = new Servor();
+        servor.setServorId(i);
         servor.setSize(2);
         servor.setCapacity(2);
         return servor;

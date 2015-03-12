@@ -70,17 +70,6 @@ public class Room {
         }
     }
 
-    public Stream<Row> orderRowforGroup(final int group) {
-        return rows.stream().sorted(new Comparator<Row>() {
-            @Override
-            public int compare(Row o1, Row o2) {
-                return Integer.compare(o1.getValueByGroup(group), o2.getValueByGroup(group));
-            }
-        });
-    }
 
-    public PriorityQueue<Group> getGroups() {
-        return groups;
-    }
 
 }

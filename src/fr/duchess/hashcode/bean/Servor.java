@@ -1,15 +1,14 @@
 package fr.duchess.hashcode.bean;
 
 public class Servor {
-    int servorId;
-    int size;
+     int size;
     int capacity;
     int row;
     int servorId;
     private int group;
 
-    public Servor(int i) {
-        servorId = i;
+    public Servor() {
+
     }
 
     public int getGroup() {
@@ -24,17 +23,11 @@ public class Servor {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
 
     public int getSize() {
         return size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
 
     public void setRow(int row) {
         this.row = row;

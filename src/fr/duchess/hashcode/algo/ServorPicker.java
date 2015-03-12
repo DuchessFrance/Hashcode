@@ -14,8 +14,6 @@ import java.util.stream.Stream;
  */
 public class ServorPicker {
 
-    private Room room;
-    private PriorityQueue<Servor> remainingServors;
 
     public ServorPicker(Room room, List<Servor> servors) {
         this.room = room;
