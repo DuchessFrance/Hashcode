@@ -2,8 +2,13 @@ package fr.duchess.hashcode.algo;
 
 import fr.duchess.hashcode.bean.Servor;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -77,6 +82,17 @@ public class ServorPicker {
 
     }
 
+    public int evaluate(){
+        return room.getGroups().stream().mapToInt(
+                new ToIntFunction<Group>() {
+                    @Override
+                    public int applyAsInt(Group value) {
+                        return 0;
+                    }
+                }
+        ).min().getAsInt();
+    }
+
     public String serialize(){
         StringBuilder string = new StringBuilder();
         servors.stream().sorted(new Comparator<Servor>() {
@@ -93,7 +109,12 @@ public class ServorPicker {
                     string.append("x").append("\n");
             }
         });
-
+        File file = new File("output");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(string.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return string.toString();
     }
 

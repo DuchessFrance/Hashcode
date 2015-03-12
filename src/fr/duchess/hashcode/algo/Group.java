@@ -5,6 +5,7 @@ import fr.duchess.hashcode.bean.Servor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.ToIntFunction;
+import java.util.stream.IntStream;
 
 /**
  * Created by Axelle on 12-03-15.
@@ -26,4 +27,6 @@ public class Group {
             }
         }).sum();
     }
+
+   
 }
