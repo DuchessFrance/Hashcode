@@ -6,7 +6,7 @@ import java.util.List;
 public class DataCenter {
     private List<DataCenterRow> rows;
 
-    public int getRowCount(){
+    public int getRowCount() {
         return getRows().size();
     }
 

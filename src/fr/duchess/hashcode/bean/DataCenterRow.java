@@ -6,8 +6,8 @@ import java.util.List;
  * Created by Axelle on 12-03-15.
  */
 public class DataCenterRow {
-     private List<Slot> slots;
-     int rowIndex;
+    int rowIndex;
+    private List<Slot> slots;
 
     public List<Slot> getSlots() {
         return slots;
@@ -17,5 +17,7 @@ public class DataCenterRow {
         this.slots = slots;
     }
 
-    public void setRowIndex(int index) { this.rowIndex = index;}
+    public void setRowIndex(int index) {
+        this.rowIndex = index;
+    }
 }

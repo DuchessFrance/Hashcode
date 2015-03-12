@@ -13,7 +13,7 @@ public class Main {
         
         Parser parser = Parser.getInstance();
 
-        List<Servor> servers = parser.parse(dataCenter, "/home/cecilia/IdeaProjects/Hashcode/src/fr/duchess/hashcode/resources", "dc.in");
+        List<Servor> servers = parser.parse(dataCenter, "src/fr/duchess/hashcode/resources/dc.in");
 
 
 

@@ -1,6 +1,5 @@
 package fr.duchess.hashcode;
 
-import fr.duchess.hashcode.algo.Row;
 import fr.duchess.hashcode.bean.DataCenter;
 import fr.duchess.hashcode.bean.DataCenterRow;
 import fr.duchess.hashcode.bean.Servor;
@@ -30,12 +29,12 @@ public class Parser {
         return parser;
     }
 
-    public  List<Servor> parse(DataCenter dataCenter, String filePath, String fileName) {
+    public List<Servor> parse(DataCenter dataCenter, String filePath) {
 
-        List<Servor> servors= new ArrayList<>();
+        List<Servor> servors = new ArrayList<>();
 
         try {
-            Path path = Paths.get(filePath, fileName);
+            Path path = Paths.get(filePath);
             Stream<String> lines = null;
             lines = Files.lines(path);
 
@@ -49,7 +48,7 @@ public class Parser {
             int nbPools = Integer.valueOf(firstLineValues[3]);
             int nbServors = Integer.valueOf(firstLineValues[4]);
 
-            System.out.println("Nb rows "+nbRows + " nbSlots " + nbSlots + " nbSlotsUnavailable "+ nbSlotsUnavailable + " nbPools "+ nbPools + " nbServors "+ nbServors);
+            System.out.println("Nb rows " + nbRows + " nbSlots " + nbSlots + " nbSlotsUnavailable " + nbSlotsUnavailable + " nbPools " + nbPools + " nbServors " + nbServors);
 
             // Rows creation
             DataCenterRow[] rows = createRows(nbRows, nbSlots);
@@ -58,7 +57,7 @@ public class Parser {
 
             dataCenter.setRows(Arrays.asList(rows));
 
-            servors= getServers(linesArray, nbSlotsUnavailable, nbServors);
+            servors = getServers(linesArray, nbSlotsUnavailable, nbServors);
 
 
         } catch (IOException e) {
@@ -69,10 +68,10 @@ public class Parser {
 
     }
 
-    private List<Servor>  getServers(Object[] linesArray, int nbSlotsUnavailable, int nbServors) {
+    private List<Servor> getServers(Object[] linesArray, int nbSlotsUnavailable, int nbServors) {
         Object[] servorsToBeAllocatedLines = Arrays.copyOfRange(linesArray, nbSlotsUnavailable + 1, nbSlotsUnavailable + nbServors + 1);
         List<Servor> servorsToBeAllocated = new ArrayList<>();
-        for (int i = 0 ; i < servorsToBeAllocatedLines.length; i++) {
+        for (int i = 0; i < servorsToBeAllocatedLines.length; i++) {
 
             String stringservorsToBeAllocatedLine = (String) servorsToBeAllocatedLines[i];
 
@@ -88,7 +87,7 @@ public class Parser {
 
             servorsToBeAllocated.add(servor);
 
-            System.out.println("Server : id : "+ i + " " + capacity + " " + nbServorSlots);
+            System.out.println("Server : id : " + i + " " + capacity + " " + nbServorSlots);
         }
         return servorsToBeAllocated;
     }
@@ -113,15 +112,15 @@ public class Parser {
     }
 
     private DataCenterRow[] createRows(int nbRows, int nbSlots) {
-        DataCenterRow[] rows = new  DataCenterRow[nbRows];
-        for(int i = 0 ; i < nbRows; i++){
-            DataCenterRow row =new DataCenterRow();
+        DataCenterRow[] rows = new DataCenterRow[nbRows];
+        for (int i = 0; i < nbRows; i++) {
+            DataCenterRow row = new DataCenterRow();
             row.setRowIndex(i);
 
             // slots creation
-            Slot[] slots = new  Slot[nbSlots];
+            Slot[] slots = new Slot[nbSlots];
 
-            for(int j = 0 ; j < nbSlots ; j++){
+            for (int j = 0; j < nbSlots; j++) {
                 Slot slot = new Slot();
                 slot.setSlotNumber(j);
                 slot.setAvailable(true);

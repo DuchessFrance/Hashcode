@@ -4,7 +4,6 @@ import fr.duchess.hashcode.bean.Servor;
 
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,13 +12,16 @@ import java.util.stream.Stream;
  */
 public class ServorPicker {
 
+    private Room room;
+    private PriorityQueue<Servor> remainingServors;
+
     public ServorPicker(Room room, List<Servor> servors) {
         this.room = room;
         this.remainingServors = new PriorityQueue<>();
         remainingServors.addAll(servors);
     }
 
-    public void placeNextServor(){
+    public void placeNextServor() {
         Servor nextServor = remainingServors.peek();
         PriorityQueue<Group> groups = room.getGroups();
         for (Group group : groups) {
@@ -27,7 +29,7 @@ public class ServorPicker {
             List<Row> collect = rowStream.collect(Collectors.toList());
             for (Row row : collect) {
                 for (int i = 0; i < row.getSlots().size(); i++) {
-                    
+
                 }
                 for (Segment segment : row.getSlots()) {
 
@@ -36,7 +38,4 @@ public class ServorPicker {
         }
 
     }
-
-    private Room room;
-    private PriorityQueue<Servor> remainingServors;
 }
