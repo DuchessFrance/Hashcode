@@ -13,6 +13,16 @@ public class Segment {
     int size;
     Status status;
 
+    public int getBeginningSlot() {
+        return beginningSlot;
+    }
+
+    public void setBeginningSlot(int beginningSlot) {
+        this.beginningSlot = beginningSlot;
+    }
+
+    int beginningSlot;
+
     public Segment() {
         this.size = 1;
     }

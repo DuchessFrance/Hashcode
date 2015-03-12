@@ -4,6 +4,26 @@ public class Servor {
      int size;
     int capacity;
     int row;
+
+    public boolean isPlaced() {
+        return placed;
+    }
+
+    public void setPlaced(boolean placed) {
+        this.placed = placed;
+    }
+
+    boolean placed;
+
+    public int getSlotNumber() {
+        return slotNumber;
+    }
+
+    public void setSlotNumber(int slotNumber) {
+        this.slotNumber = slotNumber;
+    }
+
+    int slotNumber;
     int servorId;
     private int group;
 

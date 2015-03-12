@@ -49,19 +49,23 @@ public class Room {
             rows.add(newRow);
              newRow.setRowNumber(row.getRowIndex());
             Optional<Segment> currentSegment = Optional.empty();
+             int slotNumber = 0;
             for (Slot slot : row.getSlots()) {
                 if (currentSegment.isPresent()) {
                     if (currentSegment.get().status == Status.FREE && slot.isAvailable()) {
                         currentSegment.get().size++;
+                        slotNumber++;
                         continue;
                     }
                     if (currentSegment.get().status == Status.UNAV && !slot.isAvailable()) {
                         currentSegment.get().size++;
+                        slotNumber++;
                         continue;
                     }
 
                 }
                 Segment segment = new Segment();
+                segment.setBeginningSlot(slotNumber);
                 currentSegment = Optional.of(segment);
                 newRow.getSlots().add(segment);
                 if (slot.isAvailable())

@@ -3,6 +3,7 @@ package fr.duchess.hashcode.algo;
 import fr.duchess.hashcode.bean.Servor;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,8 +29,10 @@ public class ServorPicker {
 
     public void placeNextServor() {
         Servor peek = remainingServors.poll();
-        attemptPlacingServor(peek);
+        boolean b = attemptPlacingServor(peek);
+        peek.setPlaced(b);
         servors.add(peek);
+
     }
 
     private boolean attemptPlacingServor(Servor nextServor) {
@@ -43,7 +46,6 @@ public class ServorPicker {
                     Segment segment = row.getSlots().get(i);
                     if(serverFitsInSegment(nextServor, segment)){
                         addServorToGroupAndRow(nextServor, group, row, i, segment);
-
                         return true;
                     }
                 }
@@ -70,15 +72,28 @@ public class ServorPicker {
         segment.status = Status.SERVER;
         segment.servor = Optional.of(nextServor);
         segment.group = Optional.of(group);
+        nextServor.setSlotNumber(segment.getBeginningSlot());
         group.servors.add(nextServor);
 
     }
 
     public String serialize(){
         StringBuilder string = new StringBuilder();
-        for (Servor servor : servors) {
-            string.append(servor.getServorId()).append(" ").append(servor.getRow()).append(" ").append("/").append(" ").append(servor.getGroup()).append("\n");
-        }
+        servors.stream().sorted(new Comparator<Servor>() {
+            @Override
+            public int compare(Servor o1, Servor o2) {
+                return Integer.compare(o1.getServorId(),o2.getServorId());
+            }
+        }).forEachOrdered(new Consumer<Servor>() {
+            @Override
+            public void accept(Servor servor) {
+                if(servor.isPlaced())
+                    string.append(servor.getRow()).append(" ").append(servor.getSlotNumber()).append(" ").append(servor.getGroup()).append("\n");
+                else
+                    string.append("x").append("\n");
+            }
+        });
+
         return string.toString();
     }
 
