@@ -38,4 +38,8 @@ public class Row {
     public int getRowNumber() {
         return rowNumber;
     }
+
+    public void setRowNumber(int rowNumber) {
+        this.rowNumber = rowNumber;
+    }
 }

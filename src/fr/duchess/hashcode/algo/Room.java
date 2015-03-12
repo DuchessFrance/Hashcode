@@ -47,6 +47,7 @@ public class Room {
             Row newRow = new Row(row.getRowIndex());
 
             rows.add(newRow);
+             newRow.setRowNumber(row.getRowIndex());
             Optional<Segment> currentSegment = Optional.empty();
             for (Slot slot : row.getSlots()) {
                 if (currentSegment.isPresent()) {

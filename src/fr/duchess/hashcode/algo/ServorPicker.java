@@ -2,10 +2,7 @@ package fr.duchess.hashcode.algo;
 
 import fr.duchess.hashcode.bean.Servor;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,7 +16,7 @@ public class ServorPicker {
 
     public ServorPicker(Room room, List<Servor> servors) {
         this.room = room;
-       this.servors = servors;
+       this.servors = new ArrayList<>();
         this.remainingServors = new PriorityQueue<Servor>(new Comparator<Servor>() {
             @Override
             public int compare(Servor o1, Servor o2) {
@@ -30,7 +27,9 @@ public class ServorPicker {
     }
 
     public void placeNextServor() {
-        attemptPlacingServor(remainingServors.peek());
+        Servor peek = remainingServors.poll();
+        attemptPlacingServor(peek);
+        servors.add(peek);
     }
 
     private boolean attemptPlacingServor(Servor nextServor) {
@@ -44,11 +43,13 @@ public class ServorPicker {
                     Segment segment = row.getSlots().get(i);
                     if(serverFitsInSegment(nextServor, segment)){
                         addServorToGroupAndRow(nextServor, group, row, i, segment);
+
                         return true;
                     }
                 }
             }
         }
+
         return false;
     }
 
@@ -70,6 +71,7 @@ public class ServorPicker {
         segment.servor = Optional.of(nextServor);
         segment.group = Optional.of(group);
         group.servors.add(nextServor);
+
     }
 
     public String serialize(){
