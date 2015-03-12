@@ -53,4 +53,7 @@ public class Servor {
         this.servorId = servorId;
     }
 
+    public int getRow() {
+        return row;
+    }
 }

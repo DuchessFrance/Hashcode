@@ -15,9 +15,11 @@ import java.util.stream.Stream;
 public class ServorPicker {
 
 
+    private final List<Servor> servors;
+
     public ServorPicker(Room room, List<Servor> servors) {
         this.room = room;
-       // this.servors = servors;
+       this.servors = servors;
         this.remainingServors = new PriorityQueue<Servor>(new Comparator<Servor>() {
             @Override
             public int compare(Servor o1, Servor o2) {
@@ -68,6 +70,14 @@ public class ServorPicker {
         segment.servor = Optional.of(nextServor);
         segment.group = Optional.of(group);
         group.servors.add(nextServor);
+    }
+
+    public String serialize(){
+        StringBuilder string = new StringBuilder();
+        for (Servor servor : servors) {
+            string.append(servor.getRow()).append(" ").append("/").append(" ").append(servor.getGroup()).append("\n");
+        }
+        return string.toString();
     }
 
     private Room room;
