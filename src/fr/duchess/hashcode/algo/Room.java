@@ -2,9 +2,15 @@ package fr.duchess.hashcode.algo;
 
 import fr.duchess.hashcode.bean.DataCenter;
 import fr.duchess.hashcode.bean.DataCenterRow;
+import fr.duchess.hashcode.bean.Servor;
 import fr.duchess.hashcode.bean.Slot;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 /**
@@ -73,6 +79,23 @@ public class Room {
                     segment.status = Status.UNAV;
             }
         }
+    }
+
+    public String serialize(){
+        StringBuilder string = new StringBuilder();
+        getRows().stream().forEachOrdered(row -> {
+            row.getSlots().stream().forEachOrdered(segment ->{
+                string.append(segment.serialize());
+            });
+            string.append("\n");
+        });
+        File file = new File("room");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(string.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return string.toString();
     }
 
 

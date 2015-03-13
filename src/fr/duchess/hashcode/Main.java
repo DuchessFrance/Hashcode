@@ -25,12 +25,14 @@ public class Main {
         List<Servor> servers = parser.parse(dataCenter, "src/fr/duchess/hashcode/resources/dc.in");
 
         Room room = new Room(10,dataCenter);
+        System.out.print(room.serialize());
         ServorPicker servorPicker = new ServorPicker(room,servers);
         for (int i = 0; i < servers.size(); i++) {
             servorPicker.placeNextServor();
         }
+        System.out.print(room.serialize());
+        servorPicker.serialize();
 
-        System.out.print(servorPicker.serialize());
 
         System.out.println("**********************");
         System.out.println(servorPicker.evaluate());

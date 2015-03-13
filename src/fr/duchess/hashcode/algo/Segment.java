@@ -26,4 +26,12 @@ public class Segment {
     public Segment() {
         this.size = 1;
     }
+
+    public String serialize(){
+        String output ="";
+        for (int i = 0; i < size; i++) {
+            output += status.serialize();
+        }
+        return output;
+    }
 }

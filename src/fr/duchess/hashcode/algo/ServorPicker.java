@@ -47,12 +47,25 @@ public class ServorPicker {
             Stream<Row> rowStream = room.orderRowforGroup(group.groupNumber);
             List<Row> collect = rowStream.collect(Collectors.toList());
             for (Row row : collect) {
+                int fittedSegmentIndex = -1;
+                Segment fittedSegment = null;
                 for (int i = 0; i < row.getSlots().size(); i++) {
                     Segment segment = row.getSlots().get(i);
                     if(serverFitsInSegment(nextServor, segment)){
-                        addServorToGroupAndRow(nextServor, group, row, i, segment);
-                        return true;
+                        if(fittedSegment == null){
+                            fittedSegment = segment;
+                            fittedSegmentIndex = i;
+                        }else{
+                            if(fittedSegment.size > segment.size){
+                                fittedSegment = segment;
+                                fittedSegmentIndex = i;
+                            }
+                        }
                     }
+                }
+                if(fittedSegment != null){
+                    addServorToGroupAndRow(nextServor, group, row, fittedSegmentIndex,fittedSegment);
+                    return true;
                 }
             }
         }
@@ -69,9 +82,10 @@ public class ServorPicker {
         nextServor.setRow(row.getRowNumber());
         if(segment.size > nextServor.getSize()){
             Segment newSegment = new Segment();
-            newSegment.size = nextServor.getSize() - segment.size;
-            row.getSlots().add(segmentIndex,newSegment);
+            newSegment.size = segment.size - nextServor.getSize();
+            row.getSlots().add(segmentIndex + 1,newSegment);
             newSegment.status = Status.FREE;
+            newSegment.beginningSlot = segment.beginningSlot + nextServor.getSize();
             segment.size = nextServor.getSize();
         }
         segment.status = Status.SERVER;
